@@ -5,4 +5,10 @@
 # include <unistd.h>
 # include <stdio.h>
 
+typedef struct s_swap_list
+{
+	int					nb;
+	struct s_swap_list	*next;
+} t_swap_list;
+
 #endif

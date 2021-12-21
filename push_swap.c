@@ -33,62 +33,23 @@ void	ss(char **stack)
 	s(stack[1], NULL);
 }
 
-void	p(char **stack, char *name)
+void	pa(char **stack)
 {
 	int	stacklen;
 
-	if (name == "pa")
+	stacklen = ft_strlen(stack[0]);
+	while (stack[0][0] != 0)
 	{
-		stacklen = ft_strlen(stack[0]);
-		while (stack[0][0] != 0)
-		{
-			swap(stack[0][stacklen], stack[0][stacklen + 1]);
-			stacklen--;
-		}
-		swap(stack[1][0], stack[0][0]);
-		stacklen = ft_strlen(stack[1]);
-		while (stack[0][0] != 0)
-		{
-			swap(stack[0][stacklen], stack[0][stacklen + 1]);
-			stacklen--;
-		}
+		swap(stack[0][stacklen], stack[0][stacklen + 1]);
+		stacklen--;
 	}
-	// if (name == "pb")
-	// {
-	// 	stacklen = ft_strlen(stack[1]);
-	// 	while (stack[1][0] != 0)
-	// 	{
-	// 		swap(stack[1][stacklen], stack[1][stacklen + 1]);
-	// 		stacklen--;
-	// 	}
-	// 	swap(stack[1][0], stack[0][0]);
-	// }
-}
-
-void	instruction(char **stack)
-{
-	// if (stack[0][0] < stack[0][get_last(stack[0])])
-	// 	rra(stack[0]);
-	if (stack[0][0] > stack[0][1])
-		s(stack[0], "sa");
-	if (stack[1][0] < stack[1][1])
-		s(stack[1], "sb");
-	if (stack[0][0] < stack[1][0])
-		ss(stack);
-	// if (stack[0][0] < stack[0][1])
-	// 	p(stack, "pb");
-	// if (les nombres sont dans lordre dans a )
-	// 	p(stack, "pa");
-	// if ()
-	// 	ra(stack[0]);
-	// if ()
-	// 	rb(stack[1]);
-	// if ()
-	// 	rr(stack);
-	// if ()
-	// 	rrb(stack[1]);
-	// if ()
-	// 	rrr(stack);
+	swap(stack[1][0], stack[0][0]);
+	stacklen = ft_strlen(stack[1]);
+	while (stack[0][0] != 0)
+	{
+		swap(stack[0][stacklen], stack[0][stacklen + 1]);
+		stacklen--;
+	}
 }
 
 char	**make_stacks(int argc, char *str)
