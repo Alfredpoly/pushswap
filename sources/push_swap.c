@@ -1,76 +1,54 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   push_swap.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fpolycar <fpolycar@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/01/17 13:01:40 by fpolycar      #+#    #+#                 */
+/*   Updated: 2022/01/24 14:00:48 by fpolycar      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-// int	get_last(char *str)
-// {
-// 	int	i;
-
-// 	while (str != '\0')
-// 		i++;
-// 	return (i);
-// }
-
-// void	swap(char *a, char *b)
-// {
-// 	char	temp;
-
-// 	temp = *a;
-// 	*a = *b;
-// 	*b = temp;
-// }
-
-// void	s(char *stack, char *name)
-// {
-// 	if (name)
-// 		write(1, name, 2);
-// 	swap(&stack[0], &stack[1]);
-// }
-
-// void	ss(char **stack)
-// {
-// 	write(1, "ss", 2);
-// 	s(stack[0], NULL);
-// 	s(stack[1], NULL);
-// }
-
-// void	pa(char **stack)
-// {
-// 	int	stacklen;
-
-// 	stacklen = ft_strlen(stack[0]);
-// 	while (stack[0][0] != 0)
-// 	{
-// 		swap(stack[0][stacklen], stack[0][stacklen + 1]);
-// 		stacklen--;
-// 	}
-// 	swap(stack[1][0], stack[0][0]);
-// 	stacklen = ft_strlen(stack[1]);
-// 	while (stack[0][0] != 0)
-// 	{
-// 		swap(stack[0][stacklen], stack[0][stacklen + 1]);
-// 		stacklen--;
-// 	}
-// }
-
-char	**make_stacks(int argc, char *str)
+t_stack	make_stacks(int argc, char **argv)
 {
-	char	**stack;
+	t_stack	stack;
+	int	**arr_stack;
+	int		i;
 
-	stack = (char **)ft_calloc(2, sizeof(char *));
-	stack[0] = str;
-	stack[1] = ft_calloc(argc, sizeof(char));
+	i = 0;
+	stack = *(t_stack *)malloc(sizeof(t_stack));
+	stack.stack_a = ft_calloc(argc, sizeof(int));
+	stack.stack_b = ft_calloc(argc, sizeof(int));
+	stack.nb_a = argc - 1;
+	stack.nb_b = 0;
+	while (argv[i + 1])
+	{
+		stack.stack_a[i] = ft_atoi(argv[i + 1]);
+		i++;
+	}
+	arr_stack = index_nb(&stack);
+	arr_2_stack(arr_stack, &stack);
 	return (stack);
 }
 
 int	main(int argc, char **argv)
 {
-	char	*a;
-	char	**stack;
+	// int		i;
+	t_stack	stack;
 
-	a = delete_spaces(argc, argv);
-	stack = make_stacks(argc, a);
+	stack = make_stacks(argc, argv);
 	if (argc <= 6)
-		sort_small_stack(argc, stack);
-	// else
-	// 	sort_big_stack();
-	printf("%s", stack[0]);
+		sort_small_stack(argc, &stack);
+	if (argc >= 7)
+		sort_big_stack(&stack);
+	// i = 0;
+	// while (i < stack.nb_a)
+	// 	printf("%d ", stack.stack_a[i++]);
+	// printf("	");
+	// i = 0;
+	// while (i < stack.nb_b)
+	// 	printf("%d ", stack.stack_b[i++]);
 }

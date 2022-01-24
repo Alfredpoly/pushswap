@@ -6,41 +6,75 @@
 /*   By: alfred <alfred@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/13 10:30:40 by alfred        #+#    #+#                 */
-/*   Updated: 2022/01/14 16:20:41 by alfred        ########   odam.nl         */
+/*   Updated: 2022/01/18 15:00:43 by fpolycar      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(char **stack)
+void	sa(t_stack *stack)
 {
 	write(1, "sa\n", 3);
-	swap(&stack[0][0], &stack[0][1]);
+	swap(&stack->stack_a[0], &stack->stack_a[1]);
 }
 
-void	rra(int argc, char **stack)
+void	sb(t_stack *stack)
 {
-	int		i;
-
-	write(1, "rra\n", 4);
-	i = argc - 2;
-	while (i > 0)
-	{
-		swap(&stack[0][i], &stack[0][i - 1]);
-		i--;
-	}
+	write(1, "sb\n", 3);
+	swap(&stack->stack_b[0], &stack->stack_b[1]);
 }
 
-void	pa(int argc, char **stack)
+void	ss(t_stack *stack)
+{
+	write(1, "ss\n", 3);
+	swap(&stack->stack_a[0], &stack->stack_a[1]);
+	swap(&stack->stack_b[0], &stack->stack_b[1]);
+}
+
+void	pa(t_stack *stack)
 {
 	int		i;
 
 	write(1, "pa\n", 3);
-	i = argc - 2;
-	while (i > 0)
+	i = stack->nb_a - 1;
+	if (stack->nb_a != 0)
 	{
-		swap(&stack[1][i], &stack[1][i - 1]);
-		i--;
+		while (i >= 0)
+		{
+			swap(&stack->stack_a[i], &stack->stack_a[i + 1]);
+			i--;
+		}
 	}
-	stack[1][0] = stack[0][0];
+	stack->stack_a[0] = stack->stack_b[0];
+	while (i <= stack->nb_b - 1)
+	{
+		swap(&stack->stack_b[i], &stack->stack_b[i - 1]);
+		i++;
+	}
+	stack->nb_a += 1;
+	stack->nb_b -= 1;
+}
+
+void	pb(t_stack *stack)
+{
+	int		i;
+
+	write(1, "pb\n", 3);
+	i = stack->nb_b - 1;
+	if (stack->nb_b != 0)
+	{
+		while (i >= 0)
+		{
+			swap(&stack->stack_b[i], &stack->stack_b[i + 1]);
+			i--;
+		}
+	}
+	stack->stack_b[0] = stack->stack_a[0];
+	while (i <= stack->nb_a - 1)
+	{
+		swap(&stack->stack_a[i], &stack->stack_a[i - 1]);
+		i++;
+	}
+	stack->nb_a -= 1;
+	stack->nb_b += 1;
 }
