@@ -6,7 +6,7 @@
 /*   By: fpolycar <fpolycar@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/17 13:01:40 by fpolycar      #+#    #+#                 */
-/*   Updated: 2022/01/24 14:00:48 by fpolycar      ########   odam.nl         */
+/*   Updated: 2022/01/25 13:23:21 by fpolycar      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 t_stack	make_stacks(int argc, char **argv)
 {
 	t_stack	stack;
-	int	**arr_stack;
+	int		**arr_stack;
 	int		i;
 
 	i = 0;
 	stack = *(t_stack *)malloc(sizeof(t_stack));
-	stack.stack_a = ft_calloc(argc, sizeof(int));
-	stack.stack_b = ft_calloc(argc, sizeof(int));
+	stack.stack_a = ft_calloc(argc + 1, sizeof(int));
+	stack.stack_b = ft_calloc(argc + 1, sizeof(int));
 	stack.nb_a = argc - 1;
 	stack.nb_b = 0;
 	while (argv[i + 1])

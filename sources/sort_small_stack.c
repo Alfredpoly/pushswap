@@ -6,7 +6,7 @@
 /*   By: alfred <alfred@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/13 10:30:40 by alfred        #+#    #+#                 */
-/*   Updated: 2022/01/20 10:01:05 by fpolycar      ########   odam.nl         */
+/*   Updated: 2022/01/25 10:02:29 by fpolycar      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	three(t_stack *stack)
 
 void	four(t_stack *stack)
 {
-	int initial;
+	int	initial;
 
 	pb(stack);
 	while (is_it_sorted(stack->nb_a, stack->stack_a) != -1)
@@ -41,7 +41,7 @@ void	four(t_stack *stack)
 
 void	five(t_stack *stack)
 {
-	int initial;
+	int	initial;
 
 	pb(stack);
 	pb(stack);
