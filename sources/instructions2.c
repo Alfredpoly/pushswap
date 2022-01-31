@@ -6,7 +6,7 @@
 /*   By: fpolycar <fpolycar@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 14:59:42 by fpolycar      #+#    #+#                 */
-/*   Updated: 2022/01/19 14:59:04 by fpolycar      ########   odam.nl         */
+/*   Updated: 2022/01/31 12:54:39 by alfred        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,24 @@ void	rrb(int argc, t_stack *stack)
 	{
 		swap(&stack->stack_b[i], &stack->stack_b[i - 1]);
 		i--;
+	}
+}
+
+void	rr(t_stack *stack)
+{
+	int		i;
+
+	write(1, "rr\n", 3);
+	i = 0;
+	while (i < stack->nb_a - 1)
+	{
+		swap(&stack->stack_a[i], &stack->stack_a[i + 1]);
+		i++;
+	}
+	i = 0;
+	while (i < stack->nb_b - 1)
+	{
+		swap(&stack->stack_b[i], &stack->stack_b[i + 1]);
+		i++;
 	}
 }

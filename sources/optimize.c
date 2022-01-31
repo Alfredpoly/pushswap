@@ -6,105 +6,94 @@
 /*   By: fpolycar <fpolycar@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/25 14:15:36 by fpolycar      #+#    #+#                 */
-/*   Updated: 2022/01/25 16:03:00 by fpolycar      ########   odam.nl         */
+/*   Updated: 2022/01/31 13:06:17 by alfred        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <limits.h>
 
-int	closest_above(t_stack *stack, int a)
+void	direction_a(t_stack *stack, t_direction *direction, int i)
 {
-	int	b;
-	int	i;
-	int	result;
+	int	nb;
 
-	i = 0;
-	b = INT_MAX;
-	result = -1;
-	while (i < stack->nb_b)
-	{
-		if (a - stack->stack_b[i] < b && a - stack->stack_b[i] > 0
-			&& stack->stack_b[i] > a)
-		{
-			b = a - stack->stack_b[i];
-			result = i;
-		}
-		else if (stack->stack_b[i] - a < b && stack->stack_b[i] - a > 0
-			&& stack->stack_b[i] > a)
-		{
-			b = stack->stack_b[i] - a;
-			result = i;
-		}
-		i++;
-	}
-	return (result);
-}
-
-int	closest_below(t_stack *stack, int a)
-{
-	int	b;
-	int	i;
-	int	result;
-
-	i = 0;
-	b = INT_MAX;
-	result = -1;
-	while (i < stack->nb_b)
-	{
-		if (a - stack->stack_b[i] < b && a - stack->stack_b[i] > 0
-			&& stack->stack_b[i] < a)
-		{
-			b = a - stack->stack_b[i];
-			result = i;
-		}
-		else if (stack->stack_b[i] - a < b && stack->stack_b[i] - a > 0
-			&& stack->stack_b[i] < a)
-		{
-			b = stack->stack_b[i] - a;
-			result = i;
-		}
-		i++;
-	}
-	return (result);
-}
-
-int	direction_a(t_stack *stack, t_direction *direction, int i)
-{
-	int nb;
-	
 	direction->ins_b = 1;
-	if (stack->nb_a % 2 != 0)
-		nb = stack->nb_a / 2 + 1;
-	else
-		nb = stack->nb_a / 2;
+	nb = stack->nb_a / 2;
 	if (i <= nb)
-		return (i);
-	else 
-		return (stack->nb_a - i + 1);
+	{
+		direction->ins_a = 1;
+		direction->nb_ins_a = i;
+	}
+	else
+	{
+		direction->ins_a = 2;
+		direction->nb_ins_a = stack->nb_a - i;
+	}
 }
 
-int	direction_b(t_stack *stack, t_direction *direction, int i)
+void	direction_b_bis(t_direction *direction, t_stack *stack, int below)
 {
-	direction->ins_b = 1;
-	printf("%d ", closest_above(stack, stack->stack_a[i]));
-	printf("%d \n", closest_below(stack, stack->stack_a[i]));
-	
-	return (0);
+	if (below <= stack->nb_b / 2)
+	{
+		direction->ins_b = 3;
+		direction->nb_ins_b = (below);
+	}
+	else
+	{
+		direction->ins_b = 4;
+		direction->nb_ins_b = (stack->nb_b - below);
+	}
 }
 
-t_direction optimize_ins(t_stack *stack)
+void	direction_b(t_stack *stack, t_direction *direction, int i)
 {
-	t_direction	*direction;
-	int			i;
+	int	above;
+	int	below;
+
+	above = closest_above(stack, stack->stack_a[i]);
+	below = closest_below(stack, stack->stack_a[i]);
+	if (below == -1 && above != -1)
+	{
+		if (above >= stack->nb_b / 2)
+		{
+			direction->ins_b = 4;
+			direction->nb_ins_b = (stack->nb_b - 1 - above);
+		}
+		else
+		{
+			direction->ins_b = 3;
+			direction->nb_ins_b = (above + 1);
+		}
+	}
+	else
+	{
+		direction_b_bis(direction, stack, below);
+	}
+}
+
+void	optimize_ins(t_stack *stack, t_direction *direction)
+{
+	int	i;
+	int	nb;
+	int	ref;
 
 	i = 0;
-	direction = malloc(sizeof(t_direction));
-	while (i <= stack->nb_a)
+	nb = INT_MAX;
+	while (i < stack->nb_a)
 	{
-		printf("%d\n", direction_a(stack, direction, i));
+		direction_a(stack, direction, i);
 		direction_b(stack, direction, i);
+		if (direction->nb_ins_a + direction->nb_ins_b < nb)
+		{
+			nb = direction->nb_ins_a + direction->nb_ins_b;
+			ref = i;
+		}
 		i++;
 	}
-	return (*direction);
+	direction_a(stack, direction, ref);
+	direction_b(stack, direction, ref);
+	if (direction->nb_ins_a == 0)
+		direction->ins_a = 0;
+	if (direction->nb_ins_b == 0)
+		direction->ins_b = 0;
 }
