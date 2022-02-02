@@ -6,7 +6,7 @@
 /*   By: fpolycar <fpolycar@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 15:03:53 by fpolycar      #+#    #+#                 */
-/*   Updated: 2022/01/31 13:11:28 by alfred        ########   odam.nl         */
+/*   Updated: 2022/02/02 18:22:24 by fpolycar      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	instructions_model(t_direction *direction, t_stack *stack)
 	optimize_ins(stack, direction);
 }
 
-void	sort_big_stack(t_stack *stack)
+t_direction	*sort_big_stack(t_stack *stack)
 {
 	t_direction	*direction;
 
@@ -60,4 +60,5 @@ void	sort_big_stack(t_stack *stack)
 		pa(stack);
 	while (is_it_sorted(stack->nb_a, stack->stack_a) != -1)
 		ra_or_rra(stack, is_it_sorted(stack->nb_a, stack->stack_a));
+	return (direction);
 }

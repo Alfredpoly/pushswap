@@ -6,7 +6,7 @@
 /*   By: alfred <alfred@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/13 10:19:40 by alfred        #+#    #+#                 */
-/*   Updated: 2022/01/31 13:16:09 by alfred        ########   odam.nl         */
+/*   Updated: 2022/02/02 16:46:41 by fpolycar      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	is_it_sorted(int nb, int *stack)
 
 void	swap(int *a, int *b)
 {
-	int	temp;
+	long	temp;
 
 	temp = *a;
 	*a = *b;

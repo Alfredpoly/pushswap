@@ -39,7 +39,7 @@ int			between_nb(t_stack *stack);
 int			max_value(int *stack, int nb_stack);
 int			min_value(int *stack, int nb_stack);
 void		ra_or_rra(t_stack *stack, int initial);
-void		sort_big_stack(t_stack *stack);
+t_direction	*sort_big_stack(t_stack *stack);
 void		rb(int argc, t_stack *stack);
 void		rrb(int argc, t_stack *stack);
 int			**index_nb(t_stack *stack);
@@ -49,5 +49,6 @@ void		arr_2_stack(int **arr, t_stack *stack);
 void		optimize_ins(t_stack *stack, t_direction *direction);
 int			closest_above(t_stack *stack, int a);
 int			closest_below(t_stack *stack, int a);
+void		check_leaks();
 
 #endif
