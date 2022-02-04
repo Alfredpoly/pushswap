@@ -6,7 +6,7 @@
 #    By: fpolycar <fpolycar@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/12/15 10:52:08 by fpolycar      #+#    #+#                  #
-#    Updated: 2022/01/09 12:48:51 by alfred        ########   odam.nl          #
+#    Updated: 2022/02/03 13:45:53 by fpolycar      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ c-files = ft_isalpha.c ft_isalnum.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_st
 			ft_strchr.c ft_strrchr.c ft_strncmp.c ft_memcmp.c  ft_strnstr.c ft_memchr.c \
 			ft_atoi.c  ft_strlcpy.c ft_strlcat.c ft_calloc.c ft_strdup.c ft_substr.c \
 			ft_strjoin.c ft_strtrim.c ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c \
-			ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_split.c get_next_line.c get_next_line_utils.c
+			ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_split.c get_next_line.c get_next_line_utils.c \
+			ft_realloc.c
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(c-files))
 
 c-bonus = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstdelone.c \

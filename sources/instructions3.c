@@ -6,11 +6,12 @@
 /*   By: alfred <alfred@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/31 12:54:50 by alfred        #+#    #+#                 */
-/*   Updated: 2022/01/31 12:55:12 by alfred        ########   odam.nl         */
+/*   Updated: 2022/02/04 13:49:16 by fpolycar      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <limits.h>
 
 void	rrr(t_stack *stack)
 {
@@ -29,4 +30,19 @@ void	rrr(t_stack *stack)
 		swap(&stack->stack_b[i], &stack->stack_b[i - 1]);
 		i--;
 	}
+}
+
+int	check_digit(char *nb)
+{
+	int	i;
+
+	i = 0;
+	if (nb[0] == '-')
+		i++;
+	while (nb[i] != 0)
+		if (ft_isdigit(nb[i++]) == 0)
+			return (1);
+	if (ft_atoi(nb) > INT_MAX)
+		return (1);
+	return (0);
 }

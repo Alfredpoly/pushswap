@@ -6,7 +6,7 @@
 /*   By: fpolycar <fpolycar@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 15:03:53 by fpolycar      #+#    #+#                 */
-/*   Updated: 2022/02/02 18:22:24 by fpolycar      ########   odam.nl         */
+/*   Updated: 2022/02/04 10:53:02 by fpolycar      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_direction	*sort_big_stack(t_stack *stack)
 			if (stack->nb_a == 1)
 				break ;
 			pb(stack);
-		}	
+		}
 	}
 	while (stack->nb_b != 0)
 		pa(stack);

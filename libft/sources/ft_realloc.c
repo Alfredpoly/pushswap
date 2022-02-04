@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_isdigit.c                                       :+:    :+:            */
+/*   ft_realloc.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: fpolycar <fpolycar@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/12/15 10:50:08 by fpolycar      #+#    #+#                 */
-/*   Updated: 2022/02/04 13:47:57 by fpolycar      ########   odam.nl         */
+/*   Created: 2022/02/03 13:40:58 by fpolycar      #+#    #+#                 */
+/*   Updated: 2022/02/03 13:41:06 by fpolycar      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
+#include "libft.h"
+
+void	*ft_realloc(void *ptr, size_t newsize)
 {
-	if c
-	if ((060 <= c) && (c <= 071))
-		return (1);
-	else
-		return (0);
+	char	*newptr;
+	size_t	cursize;
+
+	if (ptr == 0)
+		return (malloc(newsize));
+	cursize = sizeof(ptr);
+	if (newsize <= cursize)
+		return (ptr);
+	newptr = malloc(newsize);
+	ft_memcpy(ptr, newptr, cursize);
+	free(ptr);
+	return (newptr);
 }

@@ -6,7 +6,7 @@
 /*   By: fpolycar <fpolycar@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/25 14:15:36 by fpolycar      #+#    #+#                 */
-/*   Updated: 2022/01/31 13:06:17 by alfred        ########   odam.nl         */
+/*   Updated: 2022/02/04 12:06:43 by fpolycar      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@
 void	direction_a(t_stack *stack, t_direction *direction, int i)
 {
 	int	nb;
+	int	nb_a;
 
+	nb_a = stack->nb_a;
 	direction->ins_b = 1;
-	nb = stack->nb_a / 2;
+	nb = nb_a / 2;
 	if (i <= nb)
 	{
 		direction->ins_a = 1;
@@ -27,13 +29,16 @@ void	direction_a(t_stack *stack, t_direction *direction, int i)
 	else
 	{
 		direction->ins_a = 2;
-		direction->nb_ins_a = stack->nb_a - i;
+		direction->nb_ins_a = nb_a - i;
 	}
 }
 
 void	direction_b_bis(t_direction *direction, t_stack *stack, int below)
 {
-	if (below <= stack->nb_b / 2)
+	int	nb_b;
+
+	nb_b = stack->nb_b;
+	if (below <= nb_b / 2)
 	{
 		direction->ins_b = 3;
 		direction->nb_ins_b = (below);
@@ -41,7 +46,7 @@ void	direction_b_bis(t_direction *direction, t_stack *stack, int below)
 	else
 	{
 		direction->ins_b = 4;
-		direction->nb_ins_b = (stack->nb_b - below);
+		direction->nb_ins_b = (nb_b - below);
 	}
 }
 
@@ -49,15 +54,17 @@ void	direction_b(t_stack *stack, t_direction *direction, int i)
 {
 	int	above;
 	int	below;
+	int	nb_b;
 
+	nb_b = stack->nb_b;
 	above = closest_above(stack, stack->stack_a[i]);
 	below = closest_below(stack, stack->stack_a[i]);
 	if (below == -1 && above != -1)
 	{
-		if (above >= stack->nb_b / 2)
+		if (above >= nb_b / 2)
 		{
 			direction->ins_b = 4;
-			direction->nb_ins_b = (stack->nb_b - 1 - above);
+			direction->nb_ins_b = (nb_b - 1 - above);
 		}
 		else
 		{

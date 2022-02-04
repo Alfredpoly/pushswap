@@ -6,7 +6,7 @@
 /*   By: alfred <alfred@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/31 13:14:46 by alfred        #+#    #+#                 */
-/*   Updated: 2022/02/02 17:40:11 by fpolycar      ########   odam.nl         */
+/*   Updated: 2022/02/04 11:03:23 by fpolycar      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	max_value_2d(int **stack, int nb_stack)
 
 int	between_nb(t_stack *stack)
 {
-	if (stack->stack_b[0] < stack->stack_a[0] 
+	if (stack->stack_b[0] < stack->stack_a[0]
 		&& stack->stack_b[0] > stack->stack_a[stack->nb_a - 1])
 		return (1);
 	if (max_value(stack->stack_a, stack->nb_a) < stack->stack_b[0]

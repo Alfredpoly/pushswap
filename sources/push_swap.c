@@ -6,7 +6,7 @@
 /*   By: fpolycar <fpolycar@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/17 13:01:40 by fpolycar      #+#    #+#                 */
-/*   Updated: 2022/02/02 18:54:21 by fpolycar      ########   odam.nl         */
+/*   Updated: 2022/02/04 13:44:31 by fpolycar      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	**make_stacks(int argc, char **argv, t_stack *stack)
 	int		i;
 
 	i = 0;
-	stack->stack_a = malloc(argc * sizeof(int));
-	stack->stack_b = malloc(argc * sizeof(int));
+	stack->stack_a = ft_calloc(argc, sizeof(int));
+	stack->stack_b = ft_calloc(argc, sizeof(int));
 	stack->nb_a = argc - 1;
 	stack->nb_b = 0;
 	while (argv[i + 1])
@@ -45,32 +45,38 @@ int	**make_stacks(int argc, char **argv, t_stack *stack)
 	return (arr_stack);
 }
 
+void	free_everything(int **arr_stack, t_stack *stack)
+{
+	ps_clear(arr_stack, stack->nb_a);
+	free(stack->stack_b);
+	free(stack->stack_a);
+	free(stack);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack		*stack;
-	int			**arr_stack;
 	t_direction	*direction;
+	int			**arr_stack;
+	int			i;
 
-	stack = (t_stack *)malloc(sizeof(t_stack));
-	arr_stack = make_stacks(argc, argv, stack);
-	if (argc <= 6)
+	i = 1;
+	while (argv[i])
+		if (check_digit(argv[i++]) == 1)
+			argc = 1;
+	if (argc == 1)
+		write(1, "Error\n", 6);
+	else
 	{
-		sort_small_stack(argc, stack);
-		ps_clear(arr_stack, stack->nb_a);
-		free(stack->stack_b);
-		free(stack->stack_a);
-		free(stack);
+		stack = (t_stack *)malloc(sizeof(t_stack));
+		arr_stack = make_stacks(argc, argv, stack);
+		if (argc <= 6)
+			sort_small_stack(argc, stack);
+		if (argc >= 7)
+		{
+			direction = sort_big_stack(stack);
+			free(direction);
+		}
+		free_everything(arr_stack, stack);
 	}
-	if (argc >= 7)
-	{
-		direction = sort_big_stack(stack);
-		
-		free(stack->stack_b);
-		free(stack);		
-		ps_clear(arr_stack, stack->nb_a);
-		free(direction);
-		printf("%p\n\n\n\n\n\n\n\n\n", stack->stack_a);
-		free(stack->stack_a);
-	}
-	// check_leaks();
 }

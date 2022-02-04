@@ -6,16 +6,16 @@
 /*   By: fpolycar <fpolycar@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/15 10:49:41 by fpolycar      #+#    #+#                 */
-/*   Updated: 2021/12/15 10:55:25 by fpolycar      ########   odam.nl         */
+/*   Updated: 2022/02/04 13:18:13 by fpolycar      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+long long	ft_atoi(const char *str)
 {
-	int	nb;
-	int	sign;
+	long long	nb;
+	int			sign;
 
 	nb = 0;
 	while (*str == '\t' || *str == '\t' || *str == '\v' || *str == '\f'
