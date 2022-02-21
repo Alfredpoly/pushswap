@@ -6,7 +6,7 @@
 /*   By: fpolycar <fpolycar@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/04 13:54:35 by fpolycar      #+#    #+#                 */
-/*   Updated: 2022/02/04 13:58:20 by fpolycar      ########   odam.nl         */
+/*   Updated: 2022/02/21 13:58:05 by fpolycar      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ void		optimize_ins(t_stack *stack, t_direction *direction);
 int			closest_above(t_stack *stack, int a);
 int			closest_below(t_stack *stack, int a);
 int			check_digit(char *nb);
+int			check_digit2(char **argv);
 
 #endif

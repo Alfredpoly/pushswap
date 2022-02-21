@@ -6,14 +6,14 @@
 #    By: alfred <alfred@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/01/13 10:04:20 by alfred        #+#    #+#                  #
-#    Updated: 2022/02/04 10:55:42 by fpolycar      ########   odam.nl          #
+#    Updated: 2022/02/21 12:22:31 by fpolycar      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
 CC = gcc
-FLAGS = -Wall -Werror -Wextra -fsanitize=address
+FLAGS = -Wall -Werror -Wextra #-fsanitize=address
 LIBRARIES = -L$(LIBFT_DIRECTORY) -lft 
 INCLUDES = -I$(HEADERS_DIRECTORY) -I$(LIBFT_HEADERS)
 

@@ -6,7 +6,7 @@
 /*   By: alfred <alfred@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/13 10:30:40 by alfred        #+#    #+#                 */
-/*   Updated: 2022/01/25 10:02:29 by fpolycar      ########   odam.nl         */
+/*   Updated: 2022/02/21 12:19:37 by fpolycar      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ void	sort_small_stack(int argc, t_stack *stack)
 {
 	if (argc == 3 && stack->stack_a[0] > stack->stack_a[1])
 		sa(stack);
-	if (argc == 4)
+	if (argc == 4 && is_it_sorted(stack->nb_a, stack->stack_a) != -1)
 		while (is_it_sorted(stack->nb_a, stack->stack_a) != -1)
 			three(stack);
-	if (argc == 5)
+	if (argc == 5 && is_it_sorted(stack->nb_a, stack->stack_a) != -1)
 		four(stack);
-	if (argc == 6)
+	if (argc == 6 && is_it_sorted(stack->nb_a, stack->stack_a) != -1)
 		five(stack);
 }

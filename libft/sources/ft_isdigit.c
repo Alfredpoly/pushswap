@@ -6,13 +6,12 @@
 /*   By: fpolycar <fpolycar@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/15 10:50:08 by fpolycar      #+#    #+#                 */
-/*   Updated: 2022/02/04 13:47:57 by fpolycar      ########   odam.nl         */
+/*   Updated: 2022/02/04 16:23:45 by fpolycar      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isdigit(int c)
 {
-	if c
 	if ((060 <= c) && (c <= 071))
 		return (1);
 	else

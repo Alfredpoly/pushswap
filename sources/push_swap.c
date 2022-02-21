@@ -6,7 +6,7 @@
 /*   By: fpolycar <fpolycar@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/17 13:01:40 by fpolycar      #+#    #+#                 */
-/*   Updated: 2022/02/04 13:44:31 by fpolycar      ########   odam.nl         */
+/*   Updated: 2022/02/21 14:14:52 by fpolycar      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,30 +53,37 @@ void	free_everything(int **arr_stack, t_stack *stack)
 	free(stack);
 }
 
-int	main(int argc, char **argv)
+void	sort_algo(int argc, char **argv)
 {
 	t_stack		*stack;
 	t_direction	*direction;
 	int			**arr_stack;
-	int			i;
+
+	stack = (t_stack *)malloc(sizeof(t_stack));
+	arr_stack = make_stacks(argc, argv, stack);
+	if (argc <= 6)
+		sort_small_stack(argc, stack);
+	if (argc >= 7)
+	{
+		direction = sort_big_stack(stack);
+		free(direction);
+	}
+	free_everything(arr_stack, stack);
+}
+
+int	main(int argc, char **argv)
+{
+	int	i;
 
 	i = 1;
 	while (argv[i])
-		if (check_digit(argv[i++]) == 1)
-			argc = 1;
-	if (argc == 1)
-		write(1, "Error\n", 6);
-	else
 	{
-		stack = (t_stack *)malloc(sizeof(t_stack));
-		arr_stack = make_stacks(argc, argv, stack);
-		if (argc <= 6)
-			sort_small_stack(argc, stack);
-		if (argc >= 7)
+		if (check_digit(argv[i++]) == 1 || check_digit2(argv) == 1)
 		{
-			direction = sort_big_stack(stack);
-			free(direction);
+			write(1, "Error\n", 6);
+			exit(EXIT_FAILURE);
 		}
-		free_everything(arr_stack, stack);
 	}
+	if (argc != 1)
+		sort_algo(argc, argv);
 }

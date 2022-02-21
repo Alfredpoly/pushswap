@@ -6,7 +6,7 @@
 /*   By: alfred <alfred@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/31 12:54:50 by alfred        #+#    #+#                 */
-/*   Updated: 2022/02/04 13:49:16 by fpolycar      ########   odam.nl         */
+/*   Updated: 2022/02/21 14:14:20 by fpolycar      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,25 @@ int	check_digit(char *nb)
 			return (1);
 	if (ft_atoi(nb) > INT_MAX)
 		return (1);
+	return (0);
+}
+
+int	check_digit2(char **argv)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (argv[i])
+	{
+		j = i + 1;
+		while (argv[j])
+		{
+			if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
+				return (1);
+			j++;
+		}
+		i++;
+	}
 	return (0);
 }
