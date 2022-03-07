@@ -6,7 +6,7 @@
 /*   By: fpolycar <fpolycar@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/17 13:01:40 by fpolycar      #+#    #+#                 */
-/*   Updated: 2022/02/21 14:14:52 by fpolycar      ########   odam.nl         */
+/*   Updated: 2022/03/07 09:08:40 by fpolycar      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	sort_algo(int argc, char **argv)
 	arr_stack = make_stacks(argc, argv, stack);
 	if (argc <= 6)
 		sort_small_stack(argc, stack);
-	if (argc >= 7)
+	if (argc >= 7 && is_it_sorted(stack->nb_a, stack->stack_a) != -1)
 	{
 		direction = sort_big_stack(stack);
 		free(direction);
