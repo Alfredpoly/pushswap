@@ -6,7 +6,7 @@
 #    By: alfred <alfred@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/01/13 10:04:20 by alfred        #+#    #+#                  #
-#    Updated: 2022/02/21 12:22:31 by fpolycar      ########   odam.nl          #
+#    Updated: 2022/03/07 13:06:33 by fpolycar      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ HEADERS_DIRECTORY = ./includes/
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SOURCES_DIRECTORY = ./sources/
-c-files = push_swap.c utils.c utils2.c sort_small_stack.c instructions.c instructions2.c instructions3.c sort_big_stack.c optimize.c closest.c 
+c-files = push_swap.c utils.c utils2.c utils3.c sort_small_stack.c instructions.c instructions2.c instructions3.c sort_big_stack.c optimize.c closest.c 
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(c-files))
 
 OBJECTS_DIRECTORY = ./objects/

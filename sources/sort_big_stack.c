@@ -6,7 +6,7 @@
 /*   By: fpolycar <fpolycar@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 15:03:53 by fpolycar      #+#    #+#                 */
-/*   Updated: 2022/02/04 10:53:02 by fpolycar      ########   odam.nl         */
+/*   Updated: 2022/03/14 14:34:37 by fpolycar      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ t_direction	*sort_big_stack(t_stack *stack)
 	t_direction	*direction;
 
 	direction = (t_direction *)malloc(sizeof(t_direction));
+	if (!direction)
+		exit(EXIT_FAILURE);
 	while (stack->nb_a != 0)
 	{
 		if (stack->nb_b < 2)
@@ -48,9 +50,7 @@ t_direction	*sort_big_stack(t_stack *stack)
 		{
 			optimize_ins(stack, direction);
 			while (direction->nb_ins_a != 0 || direction->nb_ins_b != 0)
-			{
 				instructions_model(direction, stack);
-			}
 			if (stack->nb_a == 1)
 				break ;
 			pb(stack);

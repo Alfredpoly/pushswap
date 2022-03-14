@@ -6,28 +6,12 @@
 /*   By: alfred <alfred@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/31 13:14:46 by alfred        #+#    #+#                 */
-/*   Updated: 2022/02/04 11:03:23 by fpolycar      ########   odam.nl         */
+/*   Updated: 2022/03/07 13:06:08 by fpolycar      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <limits.h>
-
-int	max_value_2d(int **stack, int nb_stack)
-{
-	int	max;
-	int	i;
-
-	i = 0;
-	max = INT_MIN;
-	while (i < nb_stack)
-	{
-		if (stack[i][1] > max)
-			max = stack[i][1];
-	i++;
-	}
-	return (max);
-}
 
 int	between_nb(t_stack *stack)
 {
@@ -52,20 +36,11 @@ void	ra_or_rra(t_stack *stack, int initial)
 		ra(stack->nb_a, stack);
 }
 
-int	**index_nb(t_stack *stack)
+void	index_nb2(t_stack *stack, int **arr)
 {
-	int	**arr;
 	int	i;
 	int	pos;
 
-	i = 0;
-	arr = (int **)malloc(stack->nb_a * sizeof(int *));
-	while (i < stack->nb_a)
-	{
-		arr[i] = (int *)ft_calloc(2, sizeof(int));
-		arr[i][0] = stack->stack_a[i];
-		i++;
-	}
 	i = 0;
 	pos = 1;
 	while (max_value_2d(arr, stack->nb_a) != stack->nb_a)
@@ -76,6 +51,26 @@ int	**index_nb(t_stack *stack)
 		if (i == stack->nb_a)
 			i = 0;
 	}
+}
+
+int	**index_nb(t_stack *stack)
+{
+	int	**arr;
+	int	i;
+
+	i = 0;
+	arr = (int **)malloc(stack->nb_a * sizeof(int *));
+	if (!arr)
+		exit(EXIT_FAILURE);
+	while (i < stack->nb_a)
+	{
+		arr[i] = (int *)ft_calloc(2, sizeof(int));
+		if (!arr[i])
+			exit(EXIT_FAILURE);
+		arr[i][0] = stack->stack_a[i];
+		i++;
+	}
+	index_nb2(stack, arr);
 	return (arr);
 }
 

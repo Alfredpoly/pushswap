@@ -6,7 +6,7 @@
 /*   By: fpolycar <fpolycar@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/17 13:01:40 by fpolycar      #+#    #+#                 */
-/*   Updated: 2022/03/07 09:08:40 by fpolycar      ########   odam.nl         */
+/*   Updated: 2022/03/14 14:34:24 by fpolycar      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,11 @@ int	**make_stacks(int argc, char **argv, t_stack *stack)
 
 	i = 0;
 	stack->stack_a = ft_calloc(argc, sizeof(int));
+	if (!stack->stack_a)
+		exit(EXIT_FAILURE);
 	stack->stack_b = ft_calloc(argc, sizeof(int));
+	if (!stack->stack_b)
+		exit(EXIT_FAILURE);
 	stack->nb_a = argc - 1;
 	stack->nb_b = 0;
 	while (argv[i + 1])
@@ -60,6 +64,8 @@ void	sort_algo(int argc, char **argv)
 	int			**arr_stack;
 
 	stack = (t_stack *)malloc(sizeof(t_stack));
+	if (!stack)
+		exit(EXIT_FAILURE);
 	arr_stack = make_stacks(argc, argv, stack);
 	if (argc <= 6)
 		sort_small_stack(argc, stack);
@@ -78,7 +84,8 @@ int	main(int argc, char **argv)
 	i = 1;
 	while (argv[i])
 	{
-		if (check_digit(argv[i++]) == 1 || check_digit2(argv) == 1)
+		if (ft_strlen(argv[i]) > 11
+			|| check_digit(argv[i++]) == 1 || check_digit2(argv) == 1)
 		{
 			write(1, "Error\n", 6);
 			exit(EXIT_FAILURE);
